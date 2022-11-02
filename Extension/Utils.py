@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class ping(commands.Cog):
+class Utils(commands.Cog):
     def main(self, client):
         self.client = client
 
@@ -10,4 +10,4 @@ class ping(commands.Cog):
         await ctx.send("Pong")
 
 async def setup(client):
-    await client.add_cog(ping(client))
+    await client.add_cog(Utils(client))

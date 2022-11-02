@@ -20,8 +20,5 @@ async def on_ready():
     #say in chat...
     await channel.send(f"{client.user} \nNow Online!")
 
-
-
-
 #Bot Token...
 client.run(config["token"])

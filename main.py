@@ -20,5 +20,11 @@ async def on_ready():
     #say in chat...
     await channel.send(f"{client.user} \nNow Online!")
 
+#Ping...
+@client.command(name="Ping", aliases=["Pong!"])
+async def on_message(ctx):
+    await ctx.send("Pong!")
+
+
 #Bot Token...
 client.run(config["token"])

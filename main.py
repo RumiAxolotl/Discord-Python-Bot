@@ -28,12 +28,15 @@ async def load_extension():
 async def on_ready():
     print(f'{client.user} is ready')
 
-    #Bot is say in channel when it online
 
-    #channel = client.get_channel(1036297105666490371)
-    #say in chat...
-    #await channel.send(f"{client.user} \nNow Online!")
-
-#Bot Token...
+# Load Extension...
+async def load_extension():
+    for filename in os.listdir(f'./Extension'):
+        if filename.endswith('.py'):
+            await client.load_extension(f'Extension.{filename[:-3]}')
 asyncio.run(load_extension())
+
+
+#Run Bot with Token from JSON file
+
 client.run(config["token"])

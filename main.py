@@ -1,5 +1,6 @@
 
 #import libraries
+import asyncio
 import discord
 from discord.ext import commands,tasks
 import json
@@ -10,29 +11,21 @@ with open('./config.json', 'r') as configFile:
     config = json.load(configFile)
 
 
-# intents = discord.Intents().all()
-# client = commands.Bot(command_prefix='*', intents=intents, case_insensitive=True)
-class client(commands.Bot):
-    def __init__(self, *args, **kwargs):
-        self.command_prefix='*'
-        super().__init__(
-            command_prefix='*',
-            intents=discord.Intents().all()
-        )
-
+intents = discord.Intents().all()
+client = commands.Bot(command_prefix='*', intents=intents, case_insensitive=True)
 
 
 #Load Extension...
-async def load():
-    for filename in os.listdir('/Extension'):
+async def load_extension():
+    for filename in os.listdir(f'./Extension'):
         if filename.endswith('.py'):
-            await client.load_extension(f'cogs.{filename[:-3]}')
+            await client.load_extension(f'Extension.{filename[:-3]}')
 
 
 
 #Console...
 @client.event
-async def on_ready(self):
+async def on_ready():
     print(f'{client.user} is ready')
 
     #Bot is say in channel when it online
@@ -42,4 +35,5 @@ async def on_ready(self):
     #await channel.send(f"{client.user} \nNow Online!")
 
 #Bot Token...
+asyncio.run(load_extension())
 client.run(config["token"])

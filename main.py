@@ -5,6 +5,8 @@ import discord
 from discord.ext import commands,tasks
 import json
 import os
+import nest_asyncio
+nest_asyncio.apply()
 
 # open config.json to read
 with open('./config.json', 'r') as configFile:
